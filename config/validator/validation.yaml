@@ -1,0 +1,70 @@
+'$schema': https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.json
+#https://symfony.com/doc/7.4/validation.html#constraint-configuration
+App\Entity\Location:
+    properties:
+        city:
+            - NotBlank:
+                  groups: [create, edit]
+            - Length:
+                  max: 255
+                  groups: [create, edit]
+
+        country:
+            - NotBlank:
+                  groups: [create, edit]
+            - Choice:
+                  choices: [PL, DE, FR, ES, IT, US, GB]
+                  groups: [create, edit]
+
+        latitude:
+            - NotBlank:
+                  groups: [create, edit]
+            - Range:
+                  min: -90
+                  max: 90
+                  groups: [create, edit]
+
+        longitude:
+            - NotBlank:
+                  groups: [create, edit]
+            - Range:
+                  min: -180
+                  max: 180
+                  groups: [create, edit]
+
+App\Entity\Measurement:
+    properties:
+        date:
+            - NotNull:
+                  groups: [create, edit]
+        celsius:
+            - NotBlank:
+                  groups: [create, edit]
+            - Range:
+                  min: -90
+                  max: 60
+                  groups: [create, edit]
+        pressure:
+            - NotBlank:
+                  groups: [create, edit]
+            - Range:
+                  min: 800
+                  max: 1100
+                  groups: [create, edit]
+        humidity:
+            - NotBlank:
+                  groups: [create, edit]
+            - Range:
+                  min: 0
+                  max: 100
+                  groups: [create, edit]
+        windSpeed:
+            - NotBlank:
+                  groups: [create, edit]
+            - Range:
+                  min: 0
+                  max: 150
+                  groups: [create, edit]
+        location:
+            - NotNull:
+                  groups: [create, edit]
